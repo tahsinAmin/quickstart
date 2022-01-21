@@ -14,38 +14,23 @@
 </head>
 
 <body>
-  <!--<header>
-    <h1 class="logo">Welcome to Beego</h1>
-    <div class="description">
-      Beego is a simple & powerful Go web framework which is inspired by tornado and sinatra.
-    </div>
-    <ul class="flex space-x-4">
-    {{range $_, $val := .Fruits}}
-      <li>{{$val}}</li>
-    {{end}}
-    <ul>
-  </header>-->
   <main class="text-xl font-semibold">
-    <span id="ajaxButton" class="cursor-pointer underline"> Make a request</span>
+    <label for="categories">Choose a category:</label>
+    <select id="categories" onChange="update()">
+    {{range $_, $val := .Categories}}
+      <li>{{$val.Name}}</li>
+      <option value={{$val.Name}}>{{$val.Name}}</option>
+    {{end}}
+    </select> 
+    
   <main>
-<!--
-<footer>
-    <div class="author">
-      Official website:
-      <a href="http://{{.Website}}">{{.Website}}</a> /
-      Contact me:
-      <a class="email" href="mailto:{{.Email}}">{{.Email}}</a>
-    </div>
-  </footer>
--->
-  <div class="backdrop"></div>
+
   <script>
-    (function(){
-      document.querySelector('#ajaxButton').onclick = function () {
-        
-      }
-    })
+    function update(){
+      var select = document.getElementById('categories');
+      var value = select.options[select.selectedIndex].value;
+      console.log(value); // en
+    }
   </script>
-  <script src="/static/js/reload.min.js"></script>
 </body>
 </html>
