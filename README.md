@@ -28,6 +28,8 @@ To remove the default /static -> static mapping use web.DelStaticPath("/static")
 <!-- ... -->
 ```
 
+- (About Json)[https://www.sohamkamani.com/golang/json/]
+
 # Problems and it solution
 
 - 2022/01/20 15:33:00 ERROR ▶ 0004 Failed to build the application: can't load package: package .: no Go files in /home/w3e63/Desktop/Beego. Solution: go inside the directory and then press
@@ -35,3 +37,18 @@ To remove the default /static -> static mapping use web.DelStaticPath("/static")
 ```
 bee run
 ```
+
+- [How to console.log select tag's value](https://ricardometring.com/getting-the-value-of-a-select-in-javascript)
+
+<!-- https://docs.thecatapi.com/ -->
+<!-- https://api.thecatapi.com/v1/images/search?category_ids=5 -->
+<!-- 176a2a9c-6fc8-4d74-af01-4b07c0034e5e -->
+<!-- https://docs.thecatapi.com/authentication -->
+<!-- https://jsfiddle.net/adenF/njf4vts0/ -->
+<!-- https://www.youtube.com/watch?v=aYk8XAKxhxU&list=PLujhHB_uAFJws6Vv5q1KDoaQ4YcpS9UOm&index=5 -->
+<!-- https://www.youtube.com/watch?v=0ub6BwdBwIY -->
+<!-- https://www.youtube.com/results?search_query=golang+ajax -->
+<!-- https://www.youtube.com/watch?v=uMhpCDZAebE&list=PLSak_q1UXfPrba68q2afhFq4aBAPVSDbj -->
+<!-- https://www.youtube.com/watch?v=F3tieL1lX1I -->
+<!-- https://uploads-ssl.webflow.com/5e3de80322b300854230f11f/5e5bebb60e1706155d830222_bidroom-search-page-1280x960.jpeg -->
+<!-- https://www.google.com/imgres?imgurl=http%3A%2F%2Fassets.uxbooth.com%2Fuploads%2F2017%2F05%2Fimage3.png&imgrefurl=https%3A%2F%2Fwww.uxbooth.com%2Farticles%2Fbest-practices-for-search%2F&tbnid=CILtm-2OFNMdRM&vet=12ahUKEwi40o_khML1AhUK-DgGHVICAt4QMygGegUIARDTAQ..i&docid=6CrS57Z9cO39XM&w=1999&h=730&itg=1&q=search%20bars%20web%20design&client=ubuntu&ved=2ahUKEwi40o_khML1AhUK-DgGHVICAt4QMygGegUIARDTAQ -->

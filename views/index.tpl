@@ -19,7 +19,7 @@
     <select id="categories" onChange="update()">
     {{range $_, $val := .Categories}}
       <li>{{$val.Name}}</li>
-      <option value={{$val.Name}}>{{$val.Name}}</option>
+      <option value={{$val.Id}}>{{$val.Name}}</option>
     {{end}}
     </select> 
     
