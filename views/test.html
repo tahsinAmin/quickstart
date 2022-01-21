@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax Homie</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="text-xl font-semibold">
+      <span id="ajaxButton" class="cursor-pointer underline">
+        Make a request</span
+      >
+    </main>
+    <script>
+      (function () {
+        document.querySelector("#ajaxButton").onclick = function () {
+          makeRequest("test.html");
+        };
+        var httpRequest = new XMLHttpRequest();
+
+        function makeRequest(url) {
+          // make the request
+          httpRequest.open("GET", url);
+          httpRequest.send();
+          //   listen for the response
+          // call alertcontents fiunction afgter we recievce server response
+          httpRequest.onreadystatechange = alertContents;
+        }
+
+        function alertContents() {
+          if (httpRequest.readyState == 4) {
+            if (httpRequest.status === 200) {
+              alert("Correct");
+              //   alert(httpRequest.responseText);
+            } else {
+              alert("there was a problem witht he request");
+            }
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

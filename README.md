@@ -22,15 +22,16 @@ web.SetStaticPath("/down2", "download2")
 Visiting the URL http://localhost/down1/123.txt will request the file 123.txt in the download1 directory.
 To remove the default /static -> static mapping use web.DelStaticPath("/static")
 
+- How to comment in HTML:
+
+```
+<!-- ... -->
+```
+
 # Problems and it solution
 
 - 2022/01/20 15:33:00 ERROR ▶ 0004 Failed to build the application: can't load package: package .: no Go files in /home/w3e63/Desktop/Beego. Solution: go inside the directory and then press
 
-````
-
+```
 bee run
-
 ```
-
-```
-````
