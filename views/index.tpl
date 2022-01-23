@@ -22,15 +22,16 @@
       <option value="desc">Desc</option>
     </select> 
 
-    <label for="order">Type</label>
-    <select id="order" onChange="update()">
-      <option value="random">All</option>
+    <label for="type">Type</label>
+    <select id="type" onChange="update()">
+      <option value="">All</option>
       <option value="jpg">Static</option>
       <option value="gif">Animated</option>
     </select>
 
     <label for="categories">Choose a category:</label>
     <select id="categories" onChange="update()">
+    <option value="">None</option>
     {{range $_, $val := .Categories}}
       <option value={{$val.Id}}>{{$val.Name}}</option>
     {{end}}
@@ -38,6 +39,7 @@
     
     <label for="breeds">Choose a breed:</label>
     <select id="breeds" onChange="update()">
+    <option value="">None</option>
     {{range $_, $val := .Breeds}}
       <option value={{$val.Id}}>{{$val.Name}}</option>
     {{end}}
@@ -46,15 +48,18 @@
   <main>
 
   <script>
-  var sel1 = document.querySelector('#categories');
-  var sel2 = document.querySelector('#breeds');
+      var selectOrder = document.getElementById('order');
+      var selectType = document.getElementById('type');
+      var selectCat = document.getElementById('categories');
+      var selectBreed = document.getElementById('breeds');
 
     function update(){
-      var selectCat = document.getElementById('categories');
-      var valueCat = sel1.options[sel1.selectedIndex].value;
-      var selectBreed = document.getElementById('breeds');
-      var valueBreed = sel2.options[sel2.selectedIndex].value;
-      console.log(valueCat, valueBreed); // en
+
+      var valueOrder = selectOrder.options[selectOrder.selectedIndex].value;
+      var valueType = selectType.options[selectType.selectedIndex].value;
+      var valueCat = selectCat.options[selectCat.selectedIndex].value;
+      var valueBreed = selectBreed.options[selectBreed.selectedIndex].value;
+      console.log(valueOrder, valueType, valueCat, valueBreed); // en
     }
   </script>
 </body>
