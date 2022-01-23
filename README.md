@@ -1,3 +1,23 @@
+# Tasks
+
+- [ ] How to show breeds in select
+
+# API
+
+- To get cat images by categories, give the category id and it'll give you:
+  `https://api.thecatapi.com/v1/images/search?category_ids=1`
+
+- To get all categories
+  `https://api.thecatapi.com/v1/categories`
+
+- To get all categories
+  `https://api.thecatapi.com/v1/breeds`
+
+- Fetch by breeds:
+`https://api.thecatapi.com/v1/images/search?breed_ids=abob`
+
+  <!-- https://documenter.getpostman.com/view/4016432/RWToRJCq#ea81771b-b042-42d1-ab7f-c75deb6bb259 -->
+
 # What I've learned:
 
 - ```
@@ -39,6 +59,8 @@ bee run
 ```
 
 - [How to console.log select tag's value](https://ricardometring.com/getting-the-value-of-a-select-in-javascript)
+
+- If any fields value is not showing from the fetched json response. Check if the field typy matches with the json property's value's type.
 
 <!-- https://docs.thecatapi.com/ -->
 <!-- https://api.thecatapi.com/v1/images/search?category_ids=5 -->
