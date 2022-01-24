@@ -8,4 +8,5 @@ import (
 
 func init() {
 	beego.Router("/", &controllers.MainController{}, "get:Show;post:DoShow")
+	beego.Router("/data", &controllers.MainController{}, "get:manipulate")
 }

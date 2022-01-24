@@ -39,7 +39,6 @@ func (this *MainController) Show() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	// fmt.Println(str, "\n---")
 
 	var breeds []Breeds
 	json.Unmarshal([]byte(str), &breeds)
@@ -66,4 +65,10 @@ func (this *MainController) DoShow() {
 	fmt.Println(title, catagory_id)
 	this.Data["Title"] = title
 	return
+}
+ 
+func (this *MainController) Manipulate{
+	this.TplName = "index.html"
+	this.Ctx.Request.ParseForm()
+	title := this.GetString("category")
 }

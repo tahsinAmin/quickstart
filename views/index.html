@@ -90,7 +90,7 @@
         $categories.on("change", function () {
           console.log($categories.val());
           $.ajax({
-            type: "POST",
+            type: "GET",
             url: "http://localhost:8080/data",
             data: { categories: $categories.val() }, // The data passed to / by POST method
             success: function (results) {
