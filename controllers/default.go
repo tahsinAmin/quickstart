@@ -8,21 +8,22 @@ import (
 	beego "github.com/beego/beego/v2/server/web"
 )
 
+type Categories struct {
+	Name       string `json:"name"`
+	Id         int    `json:"id"`
+	IsSelected bool
+}
+
+type Breeds struct {
+	Name string `json:"name"`
+	Id   string `json:"id"`
+}
+
 type MainController struct {
 	beego.Controller
 }
 
-func (this *MainController) Get() {
-
-	type Categories struct {
-		Name string `json:"name"`
-		Id   int    `json:"id"`
-	}
-
-	type Breeds struct {
-		Name string `json:"name"`
-		Id   string `json:"id"`
-	}
+func (this *MainController) Show() {
 
 	req := httplib.Get("https://api.thecatapi.com/v1/categories")
 	str, err := req.String()
@@ -43,10 +44,6 @@ func (this *MainController) Get() {
 	var breeds []Breeds
 	json.Unmarshal([]byte(str), &breeds)
 
-	// for i := 0; i < len(breeds); i++ {
-	// 	fmt.Println(breeds[i])
-	// }
-
 	this.Data["Website"] = "beego.me"
 	this.Data["Email"] = "muhammadtahsin@gmail.com"
 	this.Data["Fruits"] = []string{"Apple", "Banana", "Carrot", "Date", "Eggplant", "Grape"}
@@ -56,11 +53,17 @@ func (this *MainController) Get() {
 	this.TplName = "index.html"
 }
 
-func (this *MainController) Post() {
-	// order := this.GetString("order")
-	// type := this.GetString("type")
-	title := this.GetString("title")
-	fmt.Println(title)
-	this.Data["Title"] = title
+func (this *MainController) DoShow() {
 	this.TplName = "index.html"
+	this.Ctx.Request.ParseForm()
+	title := this.GetString("title")
+	catagory_id, err := this.GetInt("catagory_id")
+
+	if err != nil {
+		this.Ctx.WriteString("get param id fail")
+		return
+	}
+	fmt.Println(title, catagory_id)
+	this.Data["Title"] = title
+	return
 }
