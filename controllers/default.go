@@ -52,5 +52,15 @@ func (this *MainController) Get() {
 	this.Data["Fruits"] = []string{"Apple", "Banana", "Carrot", "Date", "Eggplant", "Grape"}
 	this.Data["Categories"] = categories
 	this.Data["Breeds"] = breeds
-	this.TplName = "index.tpl"
+	this.Data["Title"] = ""
+	this.TplName = "index.html"
+}
+
+func (this *MainController) Post() {
+	// order := this.GetString("order")
+	// type := this.GetString("type")
+	title := this.GetString("title")
+	fmt.Println(title)
+	this.Data["Title"] = title
+	this.TplName = "index.html"
 }
