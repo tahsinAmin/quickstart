@@ -9,6 +9,13 @@ import (
 	beego "github.com/beego/beego/v2/server/web"
 )
 
+type Cats struct {
+	Breeds     []string `json:"breeds"`
+	Categories []string `json:"categories"`
+	Id         string   `json:"id"`
+	Url        string   `json:"url"`
+}
+
 type Categories struct {
 	Name string `json:"name"`
 	Id   int    `json:"id"`
@@ -91,20 +98,32 @@ func (c *MainController) AjaxTest() {
 	// order := c.GetString("order")
 	// types := c.GetString("types")
 	// breeds := c.GetString("breeds")
-	categories := c.GetString("categories")
+	category_id := c.GetString("categories")
 
-	// fmt.Println("Order:", order, "\nType:", types, "\nCategories:", categories, "\nBreeds:", breeds)
+	// // fmt.Println("Order:", order, "\nType:", types, "\nCategories:", categories, "\nBreeds:", breeds)
 
-	req := httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10&category_ids=" + categories)
+	req := httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10&category_ids=" + category_id)
 	str, err := req.String()
 	if err != nil {
 		fmt.Println(err.Error())
 	}
 
-	// req.Header.Add("Content-Type", "application/json")
-	// req.Header.Add("x-api-key", "176a2a9c-6fc8-4d74-af01-4b07c0034e5e")
+	var cats []Cats
+	json.Unmarshal([]byte(str), &cats)
 
-	fmt.Println("Hello", categories, str)
-	c.Data["json"] = map[string]interface{}{"name": "Tahsin"}
+	// // req.Header.Add("Content-Type", "application/json")
+	// // req.Header.Add("x-api-key", "176a2a9c-6fc8-4d74-af01-4b07c0034e5e")
+
+	// fmt.Println("Hello", category_id)
+	// fmt.Println("\n", cats)
+	var s string
+
+	for _, cat := range cats {
+		s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
+
+		// `<img class="h-80 w-80 rounded-lg" src="%s">`
+	}
+
+	c.Data["json"] = map[string]interface{}{"name": s}
 	c.ServeJSON()
 }

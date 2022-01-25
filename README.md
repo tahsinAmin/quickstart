@@ -1,6 +1,8 @@
 # Tasks
 
 - [x] How to show breeds in select
+- [x] Show something for the categories to appear
+- [ ] Show some message if nothing found
 
 # Refactor
 
@@ -70,9 +72,8 @@ bee run
 - If any fields value is not showing from the fetched json response. Check if the field typy matches with the json property's value's type.
 
 <!-- https://docs.thecatapi.com/ -->
-<!-- https://api.thecatapi.com/v1/images/search?category_ids=5 -->
-<!-- 176a2a9c-6fc8-4d74-af01-4b07c0034e5e -->
 <!-- https://docs.thecatapi.com/authentication -->
+
 <!-- https://jsfiddle.net/adenF/njf4vts0/ -->
 <!-- https://www.youtube.com/watch?v=aYk8XAKxhxU&list=PLujhHB_uAFJws6Vv5q1KDoaQ4YcpS9UOm&index=5 -->
 <!-- https://www.youtube.com/watch?v=0ub6BwdBwIY -->
