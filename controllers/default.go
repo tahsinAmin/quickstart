@@ -3,15 +3,15 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 
 	"github.com/beego/beego/v2/client/httplib"
 	beego "github.com/beego/beego/v2/server/web"
 )
 
 type Categories struct {
-	Name       string `json:"name"`
-	Id         int    `json:"id"`
-	IsSelected bool
+	Name string `json:"name"`
+	Id   int    `json:"id"`
 }
 
 type Breeds struct {
@@ -24,7 +24,6 @@ type MainController struct {
 }
 
 func (this *MainController) Show() {
-
 	req := httplib.Get("https://api.thecatapi.com/v1/categories")
 	str, err := req.String()
 	if err != nil {
@@ -66,9 +65,46 @@ func (this *MainController) DoShow() {
 	this.Data["Title"] = title
 	return
 }
- 
-func (this *MainController) Manipulate{
-	this.TplName = "index.html"
-	this.Ctx.Request.ParseForm()
-	title := this.GetString("category")
+
+func manipulate(w http.ResponseWriter, r *http.Request) {
+	// this.TplName = "index.html"
+	fmt.Println("method:", r.Method)
+	if r.Method == "GET" {
+		r.ParseForm()
+		fmt.Println(r.Form)
+	}
+}
+
+func (this *MainController) Manipulate() {
+	// this.TplName = "index.html"
+	// this.Ctx.Request.ParseForm()
+
+	// categories := this.GetString("category")
+	// fmt.Println("Hello", categories)
+
+}
+
+func (c *MainController) AjaxTest() {
+
+	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Origin", "*")
+	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+	// order := c.GetString("order")
+	// types := c.GetString("types")
+	// breeds := c.GetString("breeds")
+	categories := c.GetString("categories")
+
+	// fmt.Println("Order:", order, "\nType:", types, "\nCategories:", categories, "\nBreeds:", breeds)
+
+	req := httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10&category_ids=" + categories)
+	str, err := req.String()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	// req.Header.Add("Content-Type", "application/json")
+	// req.Header.Add("x-api-key", "176a2a9c-6fc8-4d74-af01-4b07c0034e5e")
+
+	fmt.Println("Hello", categories, str)
+	c.Data["json"] = map[string]interface{}{"name": "Tahsin"}
+	c.ServeJSON()
 }

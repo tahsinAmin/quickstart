@@ -1,6 +1,11 @@
 # Tasks
 
-- [ ] How to show breeds in select
+- [x] How to show breeds in select
+
+# Refactor
+
+- [ ] How to have one onchange function to work with everything
+- [ ] How to do it with View
 
 # API
 
@@ -14,9 +19,11 @@
   `https://api.thecatapi.com/v1/breeds`
 
 - Fetch by breeds:
-`https://api.thecatapi.com/v1/images/search?breed_ids=abob`
+  `https://api.thecatapi.com/v1/images/search?breed_ids=abob`
 
-  <!-- https://documenter.getpostman.com/view/4016432/RWToRJCq#ea81771b-b042-42d1-ab7f-c75deb6bb259 -->
+    <!-- https://documenter.getpostman.com/view/4016432/RWToRJCq#ea81771b-b042-42d1-ab7f-c75deb6bb259 -->
+
+    <!-- https://documenter.getpostman.com/view/4016432/RWToRJCq -->
 
 # What I've learned:
 
