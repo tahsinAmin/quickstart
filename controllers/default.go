@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
 
 	"github.com/beego/beego/v2/client/httplib"
 	beego "github.com/beego/beego/v2/server/web"
@@ -62,39 +61,6 @@ func (this *MainController) Show() {
 	this.Data["Breeds"] = breeds
 	this.Data["Cats"] = cats
 	this.TplName = "index.html"
-}
-
-func (this *MainController) DoShow() {
-	this.TplName = "index.html"
-	this.Ctx.Request.ParseForm()
-	title := this.GetString("title")
-	catagory_id, err := this.GetInt("catagory_id")
-
-	if err != nil {
-		this.Ctx.WriteString("get param id fail")
-		return
-	}
-	fmt.Println(title, catagory_id)
-	this.Data["Title"] = title
-	return
-}
-
-func manipulate(w http.ResponseWriter, r *http.Request) {
-	// this.TplName = "index.html"
-	fmt.Println("method:", r.Method)
-	if r.Method == "GET" {
-		r.ParseForm()
-		fmt.Println(r.Form)
-	}
-}
-
-func (this *MainController) Manipulate() {
-	// this.TplName = "index.html"
-	// this.Ctx.Request.ParseForm()
-
-	// categories := this.GetString("category")
-	// fmt.Println("Hello", categories)
-
 }
 
 func (c *MainController) AjaxTest() {
