@@ -3,14 +3,15 @@
 - [x] How to show breeds in select
 - [x] Show something for the categories to appear
 - [x] Show images by default
+- [x] Able to manipulate all data and fetch according to that
 - [ ] Aescending should reorder the current ones
 - [ ] Show some message if nothing found
 
 # Refactor
 
-- [ ] How to have one onchange function to work with everything
 - [ ] How to do it with View
 - [ ] Change var to let
+- [ ] Make the slice of object order
 
 # API
 
@@ -73,6 +74,8 @@ bee run
 - [How to console.log select tag's value](https://ricardometring.com/getting-the-value-of-a-select-in-javascript)
 
 - If any fields value is not showing from the fetched json response. Check if the field typy matches with the json property's value's type.
+
+- How to pass golang values inside a property in tag -> `<div class="... bg-[url({{ .Url }})]"></div>`
 
 <!-- https://docs.thecatapi.com/ -->
 <!-- https://docs.thecatapi.com/authentication -->

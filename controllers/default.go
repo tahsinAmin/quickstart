@@ -29,6 +29,8 @@ type MainController struct {
 	beego.Controller
 }
 
+var baseUrl = "https://api.thecatapi.com/v1/images/search?limit=10"
+
 func (this *MainController) Show() {
 	req := httplib.Get("https://api.thecatapi.com/v1/categories")
 	str, err := req.String()
@@ -57,6 +59,14 @@ func (this *MainController) Show() {
 	var cats []Cats
 	json.Unmarshal([]byte(str), &cats)
 
+	// fmt.Println(cats)
+
+	// sort.Slice(cats, func(i, j int) bool {
+	// 	return cats[i].Id < cats[j].Id
+	// })
+
+	// fmt.Println(cats)
+
 	this.Data["Categories"] = categories
 	this.Data["Breeds"] = breeds
 	this.Data["Cats"] = cats
@@ -68,13 +78,26 @@ func (c *MainController) AjaxTest() {
 	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Origin", "*")
 	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 	order := c.GetString("order")
-	// types := c.GetString("types")
-	// breeds := c.GetString("breeds")
+	types := c.GetString("types")
 	category_id := c.GetString("categories")
+	breed_id := c.GetString("breed_id")
 
-	fmt.Println("Order:", order) //, "\nType:", types, "\nCategories:", categories, "\nBreeds:", breeds)
+	fmt.Println("Order:", order, "\nType:", types, "\nCategories:", category_id, "\nBreeds:", breed_id)
 
-	req := httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10&category_ids=" + category_id + "&order=" + category_id)
+	urlconCat := "&order=" + order + "&mime_types=" + types
+
+	if category_id != "" {
+		urlconCat += "&category_ids=" + category_id
+	}
+	if breed_id != "" {
+		urlconCat += "&breed_id=" + breed_id
+	}
+
+	url := baseUrl + urlconCat
+	fmt.Println(url)
+
+	req := httplib.Get(url)
+
 	str, err := req.String()
 	if err != nil {
 		fmt.Println(err.Error())
