@@ -29,7 +29,7 @@ type MainController struct {
 	beego.Controller
 }
 
-var baseUrl = "https://api.thecatapi.com/v1/images/search?limit=10"
+var baseUrl = "https://api.thecatapi.com/v1/images/search?"
 
 func (this *MainController) Show() {
 	req := httplib.Get("https://api.thecatapi.com/v1/categories")
@@ -50,7 +50,7 @@ func (this *MainController) Show() {
 	var breeds []Breeds
 	json.Unmarshal([]byte(str), &breeds)
 
-	req = httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10")
+	req = httplib.Get(baseUrl + "limit=9")
 	str, err = req.String()
 	if err != nil {
 		fmt.Println(err.Error())
@@ -81,19 +81,20 @@ func (c *MainController) AjaxTest() {
 	types := c.GetString("types")
 	category_id := c.GetString("categories")
 	breed_id := c.GetString("breed_id")
+	limit := c.GetString("limit")
 
 	fmt.Println("Order:", order, "\nType:", types, "\nCategories:", category_id, "\nBreeds:", breed_id)
 
-	urlconCat := "&order=" + order + "&mime_types=" + types
+	urlConcat := "limit=" + limit + "&order=" + order + "&mime_types=" + types
 
 	if category_id != "" {
-		urlconCat += "&category_ids=" + category_id
+		urlConcat += "&category_ids=" + category_id
 	}
 	if breed_id != "" {
-		urlconCat += "&breed_id=" + breed_id
+		urlConcat += "&breed_id=" + breed_id
 	}
 
-	url := baseUrl + urlconCat
+	url := baseUrl + urlConcat
 	fmt.Println(url)
 
 	req := httplib.Get(url)
@@ -110,7 +111,6 @@ func (c *MainController) AjaxTest() {
 
 	for _, cat := range cats {
 		s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
-		// `<img class="h-80 w-80 rounded-lg" src="%s">`
 	}
 
 	c.Data["json"] = map[string]interface{}{"name": s}

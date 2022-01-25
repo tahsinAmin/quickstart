@@ -4,8 +4,13 @@
 - [x] Show something for the categories to appear
 - [x] Show images by default
 - [x] Able to manipulate all data and fetch according to that
-- [ ] Aescending should reorder the current ones
+- [x] Images Per Page
+- [ ] Ascending should reorder the current ones
 - [ ] Show some message if nothing found
+- [ ] Frontend
+- [ ] Hover show link
+- [ ] How to add apiu key in beego
+- [ ] Modify Grid
 
 # Refactor
 
@@ -61,7 +66,9 @@ To remove the default /static -> static mapping use web.DelStaticPath("/static")
 <!-- ... -->
 ```
 
-- (About Json)[https://www.sohamkamani.com/golang/json/]
+- [About Json](https://www.sohamkamani.com/golang/json/)
+
+- [Using ajax](https://stackoverflow.com/questions/50128474/how-ajax-will-get-the-data-from-the-golang-code)
 
 # Problems and it solution
 
@@ -91,4 +98,6 @@ bee run
 
 <!-- https://www.youtube.com/watch?v=RQtgMCajbX8 -->
 
-<!-- https://stackoverflow.com/questions/50128474/how-ajax-will-get-the-data-from-the-golang-code -->
+<!-- -->
+
+<!-- https://www.youtube.com/watch?v=0lyngYIozro -->
