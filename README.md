@@ -67,7 +67,6 @@ To remove the default /static -> static mapping use web.DelStaticPath("/static")
 ```
 
 - [About Json](https://www.sohamkamani.com/golang/json/)
-
 - [Using ajax](https://stackoverflow.com/questions/50128474/how-ajax-will-get-the-data-from-the-golang-code)
 
 # Problems and it solution

@@ -74,7 +74,6 @@ func (this *MainController) Show() {
 }
 
 func (c *MainController) AjaxTest() {
-
 	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Origin", "*")
 	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 	order := c.GetString("order")
@@ -109,8 +108,12 @@ func (c *MainController) AjaxTest() {
 
 	var s string
 
-	for _, cat := range cats {
-		s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
+	if len(cats) > 0 {
+		for _, cat := range cats {
+			s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
+		}
+	} else {
+		s += `<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(https://cdn2.thecatapi.com/images/4kr.gif)"></div>`
 	}
 
 	c.Data["json"] = map[string]interface{}{"name": s}
