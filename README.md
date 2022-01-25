@@ -2,12 +2,15 @@
 
 - [x] How to show breeds in select
 - [x] Show something for the categories to appear
+- [x] Show images by default
+- [ ] Aescending should reorder the current ones
 - [ ] Show some message if nothing found
 
 # Refactor
 
 - [ ] How to have one onchange function to work with everything
 - [ ] How to do it with View
+- [ ] Change var to let
 
 # API
 

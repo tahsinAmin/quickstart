@@ -49,12 +49,18 @@ func (this *MainController) Show() {
 	var breeds []Breeds
 	json.Unmarshal([]byte(str), &breeds)
 
-	this.Data["Website"] = "beego.me"
-	this.Data["Email"] = "muhammadtahsin@gmail.com"
-	this.Data["Fruits"] = []string{"Apple", "Banana", "Carrot", "Date", "Eggplant", "Grape"}
+	req = httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10")
+	str, err = req.String()
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+
+	var cats []Cats
+	json.Unmarshal([]byte(str), &cats)
+
 	this.Data["Categories"] = categories
 	this.Data["Breeds"] = breeds
-	this.Data["Title"] = ""
+	this.Data["Cats"] = cats
 	this.TplName = "index.html"
 }
 
@@ -95,14 +101,14 @@ func (c *MainController) AjaxTest() {
 
 	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Origin", "*")
 	c.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-	// order := c.GetString("order")
+	order := c.GetString("order")
 	// types := c.GetString("types")
 	// breeds := c.GetString("breeds")
 	category_id := c.GetString("categories")
 
-	// // fmt.Println("Order:", order, "\nType:", types, "\nCategories:", categories, "\nBreeds:", breeds)
+	fmt.Println("Order:", order) //, "\nType:", types, "\nCategories:", categories, "\nBreeds:", breeds)
 
-	req := httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10&category_ids=" + category_id)
+	req := httplib.Get("https://api.thecatapi.com/v1/images/search?limit=10&category_ids=" + category_id + "&order=" + category_id)
 	str, err := req.String()
 	if err != nil {
 		fmt.Println(err.Error())
@@ -111,19 +117,15 @@ func (c *MainController) AjaxTest() {
 	var cats []Cats
 	json.Unmarshal([]byte(str), &cats)
 
-	// // req.Header.Add("Content-Type", "application/json")
-	// // req.Header.Add("x-api-key", "176a2a9c-6fc8-4d74-af01-4b07c0034e5e")
-
-	// fmt.Println("Hello", category_id)
-	// fmt.Println("\n", cats)
 	var s string
 
 	for _, cat := range cats {
 		s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
-
 		// `<img class="h-80 w-80 rounded-lg" src="%s">`
 	}
 
 	c.Data["json"] = map[string]interface{}{"name": s}
 	c.ServeJSON()
+	// // req.Header.Add("Content-Type", "application/json")
+	// // req.Header.Add("x-api-key", "176a2a9c-6fc8-4d74-af01-4b07c0034e5e")
 }
