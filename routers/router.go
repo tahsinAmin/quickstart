@@ -9,4 +9,5 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{}, "get:Show")
 	beego.Router("/ajaxTest", &controllers.MainController{}, "get:AjaxTest")
+	beego.Router("/sortData", &controllers.MainController{}, "get:SortData")
 }

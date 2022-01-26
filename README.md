@@ -5,12 +5,13 @@
 - [x] Show images by default
 - [x] Able to manipulate all data and fetch according to that
 - [x] Images Per Page
-- [ ] Ascending should reorder the current ones
+- [x] Ascending should reorder the current ones
 - [ ] Show some message if nothing found
 - [ ] Frontend
 - [ ] Hover show link
 - [ ] How to add apiu key in beego
 - [ ] Modify Grid
+- [ ] 
 
 # Refactor
 
