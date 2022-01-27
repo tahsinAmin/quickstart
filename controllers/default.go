@@ -105,10 +105,10 @@ func (this *MainController) AjaxTest() {
 
 	if len(cats) > 0 {
 		for _, cat := range cats {
-			s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
+			s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)]"></div>`, cat.Url)
 		}
 	} else {
-		s += `<div class="bg-cover bg-center h-80 w-80 rounded-lg text-white" style="background-image: url(https://cdn2.thecatapi.com/images/4kr.gif)">We don't have what you looking for</div>`
+		s += `<div class="bg-cover bg-center h-[320px] w-[320px] rounded-lg text-white" style="background-image: url(https://cdn2.thecatapi.com/images/4kr.gif)">We don't have what you looking for</div>`
 	}
 
 	this.Data["json"] = map[string]interface{}{"name": s}
@@ -130,7 +130,7 @@ func (this *MainController) SortData() {
 
 			s = ""
 			for _, cat := range cats {
-				s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
+				s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
 			}
 
 			this.Data["json"] = map[string]interface{}{"name": s}
@@ -146,7 +146,7 @@ func (this *MainController) SortData() {
 
 			s = ""
 			for _, cat := range cats {
-				s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
+				s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
 			}
 			this.Data["json"] = map[string]interface{}{"name": s}
 			this.ServeJSON()
@@ -191,7 +191,7 @@ func (this *MainController) NextPage() {
 
 	if len(cats) > 0 {
 		for _, cat := range cats {
-			s += fmt.Sprintf(`<div class="bg-cover bg-center h-80 w-80 rounded-lg" style="background-image: url(%s)"></div>`, cat.Url)
+			s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
 		}
 	} else {
 		s += `<div class="bg-cover bg-center h-80 w-80 rounded-lg text-white" style="background-image: url(https://cdn2.thecatapi.com/images/4kr.gif)">We don't have what you looking for</div>`

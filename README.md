@@ -7,19 +7,20 @@
 - [x] Images Per Page
 - [x] Ascending should reorder the current ones
 - [x] Show some message if nothing found
-- [ ] Frontend
-- [ ] Hover show link
-- [ ] How to add api key in beego
-- [ ] Modify Grid
+- [x] Modify Grid
 - [x] Adding More, to show new images
 - [x] ~~Add ternary~~
-- [ ]change error page
+- [ ] change error page
+- [x] Have the refresh button move along the scrollbar
+- [x] Make it rersponsive
+- [ ] Frontend
+- [ ] How to add api key in beego
 
 # Refactor
 
 - [ ] How to do it with View
-- [ ] Change var to let
-- [ ] Make the slice of object order
+- [ ] Change var to let in index.html
+- [ ] Hover show link
 
 # API
 
@@ -42,6 +43,28 @@
 # What I've learned:
 
 - Golang doesn't support any ternary operation.
+
+- to make multidimensional array with its length coming from variables,. those variuables has tyo be constants:
+
+```
+Code:
+
+const first = 2
+		const sec = 3
+		var twoD [first][sec]int
+		for i := 0; i < 2; i++ {
+			for j := 0; j < 3; j++ {
+				twoD[i][j] = i + j
+			}
+		}
+		fmt.Println("2d: ", twoD)
+```
+
+```
+Output:
+
+2d:  [[0 1 2] [1 2 3]]
+```
 
 - ```
     type MainController struct {
@@ -91,11 +114,10 @@ bee run
 <!-- https://docs.thecatapi.com/ -->
 <!-- https://docs.thecatapi.com/authentication -->
 
-<!-- https://jsfiddle.net/adenF/njf4vts0/ -->
+<!-- https://jsfiddle.net/adenF/njf4vts0/ -->t
 <!-- https://www.youtube.com/watch?v=aYk8XAKxhxU&list=PLujhHB_uAFJws6Vv5q1KDoaQ4YcpS9UOm&index=5 -->
 <!-- https://www.youtube.com/watch?v=0ub6BwdBwIY -->
 <!-- https://www.youtube.com/results?search_query=golang+ajax -->
-<!-- https://www.youtube.com/watch?v=uMhpCDZAebE&list=PLSak_q1UXfPrba68q2afhFq4aBAPVSDbj -->
 <!-- https://www.youtube.com/watch?v=F3tieL1lX1I -->
 <!-- https://uploads-ssl.webflow.com/5e3de80322b300854230f11f/5e5bebb60e1706155d830222_bidroom-search-page-1280x960.jpeg -->
 <!-- https://www.google.com/imgres?imgurl=http%3A%2F%2Fassets.uxbooth.com%2Fuploads%2F2017%2F05%2Fimage3.png&imgrefurl=https%3A%2F%2Fwww.uxbooth.com%2Farticles%2Fbest-practices-for-search%2F&tbnid=CILtm-2OFNMdRM&vet=12ahUKEwi40o_khML1AhUK-DgGHVICAt4QMygGegUIARDTAQ..i&docid=6CrS57Z9cO39XM&w=1999&h=730&itg=1&q=search%20bars%20web%20design&client=ubuntu&ved=2ahUKEwi40o_khML1AhUK-DgGHVICAt4QMygGegUIARDTAQ -->
