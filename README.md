@@ -6,12 +6,14 @@
 - [x] Able to manipulate all data and fetch according to that
 - [x] Images Per Page
 - [x] Ascending should reorder the current ones
-- [ ] Show some message if nothing found
+- [x] Show some message if nothing found
 - [ ] Frontend
 - [ ] Hover show link
-- [ ] How to add apiu key in beego
+- [ ] How to add api key in beego
 - [ ] Modify Grid
-- [ ] 
+- [x] Adding More, to show new images
+- [x] ~~Add ternary~~
+- [ ]change error page
 
 # Refactor
 
@@ -38,6 +40,8 @@
     <!-- https://documenter.getpostman.com/view/4016432/RWToRJCq -->
 
 # What I've learned:
+
+- Golang doesn't support any ternary operation.
 
 - ```
     type MainController struct {
@@ -101,3 +105,5 @@ bee run
 <!-- -->
 
 <!-- https://www.youtube.com/watch?v=0lyngYIozro -->
+
+<!-- https://cdn.dribbble.com/users/1498143/screenshots/9539471/media/a9eb6ed8dd9114790f7bec5d8f9b0843.png?compress=1&resize=400x300 -->
