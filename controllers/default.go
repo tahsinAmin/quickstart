@@ -80,7 +80,7 @@ func (this *MainController) AjaxTest() {
 
 	fmt.Println("Type:", types, "\nCategories:", category_id, "\nBreeds:", breed_id)
 
-	urlConcat := "limit=" + limit + "&mime_types=" + types
+	urlConcat := "limit=" + limit + "&mime_types=" + types + "&order="
 
 	if category_id != "" {
 		urlConcat += "&category_ids=" + category_id
@@ -100,15 +100,16 @@ func (this *MainController) AjaxTest() {
 	}
 
 	json.Unmarshal([]byte(str), &cats)
+	fmt.Println(cats)
 
 	s = ""
 
 	if len(cats) > 0 {
 		for _, cat := range cats {
-			s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)]"></div>`, cat.Url)
+			s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
 		}
 	} else {
-		s += `<div class="bg-cover bg-center h-[320px] w-[320px] rounded-lg text-white" style="background-image: url(https://cdn2.thecatapi.com/images/4kr.gif)">We don't have what you looking for</div>`
+		s += `<div></div><div class="text-center text-black font-semibold text-2xl">No Image(s) Found</div><div></div>`
 	}
 
 	this.Data["json"] = map[string]interface{}{"name": s}
@@ -194,7 +195,7 @@ func (this *MainController) NextPage() {
 			s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
 		}
 	} else {
-		s += `<div class="bg-cover bg-center h-80 w-80 rounded-lg text-white" style="background-image: url(https://cdn2.thecatapi.com/images/4kr.gif)">We don't have what you looking for</div>`
+		s += `<div></div><div class="text-center text-black font-semibold text-2xl">No Image(s) Found</div><div></div>`
 	}
 
 	this.Data["json"] = map[string]interface{}{"name": s}

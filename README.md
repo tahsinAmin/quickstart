@@ -9,8 +9,7 @@
 - [x] Show some message if nothing found
 - [x] Modify Grid
 - [x] Adding More, to show new images
-- [x] ~~Add ternary~~
-- [ ] change error page
+- [x] No image found
 - [x] Have the refresh button move along the scrollbar
 - [x] Make it rersponsive
 - [ ] Frontend
