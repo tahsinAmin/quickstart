@@ -14,61 +14,99 @@
   </head>
 
   <body>
-    <main class="text-xl font-semibold">
-      <div class="flex justify-between">
-        <label for="order">Order</label>
-        <select id="order" onChange="updateOrder()">
-          <option value="RANDOM">Random</option>
-          <option value="ASC">Ascending</option>
-          <option value="DESC">Desc</option>
-        </select>
+    <h1 class="container mx-auto my-10 text-7xl font-regular">
+      Ailuromania Image Gallery
+    </h1>
+    <main class="text-xl font-semibold container mx-auto">
+      <div class="flex xl:justify-center flex-wrap justify-left">
+        <div class="border py-4 px-8">
+          <label for="order" class="text-gray-600 text-sm font-medium uppercase"
+            >Order</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="order" onChange="updateOrder()">
+            <option class="bg-white text-black" value="RANDOM">Random</option>
+            <option class="bg-white text-black" value="ASC">Ascending</option>
+            <option class="bg-white text-black" value="DESC">Descending</option>
+          </select>
+        </div>
 
-        <label for="types">Type</label>
-        <select id="types" onChange="update()">
-          <option value="jpg,gif,png">All</option>
-          <option value="jpg">Static</option>
-          <option value="gif">Animated</option>
-        </select>
+        <div class="border py-4 px-8">
+          <label for="types" class="text-gray-600 text-sm font-medium uppercase"
+            >Type</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="types" onChange="update()">
+            <option value="jpg,gif,png">All</option>
+            <option value="jpg">Static</option>
+            <option value="gif">Animated</option>
+          </select>
+        </div>
 
-        <label for="categories">Choose a category:</label>
-        <select id="categories" onChange="update()">
-          <option value="">None</option>
-          {{range .Categories}}
-          <option value="{{.Id}}">{{.Name}}</option>
-          {{end}}
-        </select>
+        <div class="border py-4 px-8">
+          <label
+            for="categories"
+            class="text-gray-600 text-sm font-medium uppercase"
+            >Choose a category:</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="categories" onChange="update()">
+            <option value="">None</option>
+            {{range .Categories}}
+            <option value="{{.Id}}">{{.Name}}</option>
+            {{end}}
+          </select>
+        </div>
 
-        <label for="breed_id">Choose a breed:</label>
-        <select id="breed_id" onChange="update()">
-          <option value="">None</option>
-          {{range .Breeds}}
-          <option value="{{.Id}}">{{.Name}}</option>
-          {{end}}
-        </select>
+        <div class="border py-4 px-8">
+          <label
+            for="breed_id"
+            class="text-gray-600 text-sm font-medium uppercase"
+            >Choose a breed:</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="breed_id" onChange="update()">
+            <option value="">None</option>
+            {{range .Breeds}}
+            <option value="{{.Id}}">{{.Name}}</option>
+            {{end}}
+          </select>
+        </div>
 
-        <label for="limit">Per Page</label>
-        <select id="limit" onChange="update()">
-          <option value="9">9</option>
-          <option value="18">18</option>
-          <option value="80">80</option>
-        </select>
+        <div class="border py-4 px-8">
+          <label for="limit" class="text-gray-600 text-sm font-medium uppercase"
+            >Per Page</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="limit" onChange="update()">
+            <option value="9">9</option>
+            <option value="18">18</option>
+            <option value="80">80</option>
+          </select>
+        </div>
       </div>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-8 w-8 sticky top-5 left-5 bg-white text-black rounded-full cursor-pointer hover:scale-105 p-1"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+      <button
+        class="mt-4 mx-auto  flex space-x-1 items-center px-4 py-2 sticky top-5 left-5 bg-white text-black rounded-xl font-medium cursor-pointer hover:scale-105 p-1 shadow-md"
         onclick="nextPage()"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-        />
-      </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+          />
+        </svg>
+        <span>Show More</span>
+      </button>
+
       <div class="flex justify-center">
         <div
           id="result"

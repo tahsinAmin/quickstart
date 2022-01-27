@@ -7,38 +7,72 @@
   </head>
 
   <body>
-    <main class="text-xl font-semibold">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-8 w-8 sticky top-5 left-5 bg-white text-black rounded-full cursor-pointer hover:scale-105 p-1"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        onclick="nextPage()"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-        ></path>
-      </svg>
+    <main class="text-xl font-semibold container mx-auto">
       <div class="flex justify-center">
-        <div
-          id="result"
-          class="w-[1024px] px-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 place-items-stretch"
-        >
-          <div
-            class="bg-cover bg-center rounded-lg bg-[url(https://cdn2.thecatapi.com/images/dbk.jpg)] h-64 sm:h-80"
-          ></div>
+        <div class="border py-4 px-8">
+          <label for="order" class="text-gray-600 text-sm font-medium uppercase"
+            >Order</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="order" onChange="updateOrder()">
+            <option class="bg-white text-black" value="RANDOM">Random</option>
+            <option class="bg-white text-black" value="ASC">Ascending</option>
+            <option class="bg-white text-black" value="DESC">Descending</option>
+          </select>
+        </div>
 
-          <!-- <div
-            class="bg-cover bg-center rounded-lg bg-[url(https://cdn2.thecatapi.com/images/MTcxOTAyNA.gif)] h-64 sm:h-80"
-          ></div>
+        <div class="border py-4 px-8">
+          <label for="types" class="text-gray-600 text-sm font-medium uppercase"
+            >Type</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="types" onChange="update()">
+            <option value="jpg,gif,png">All</option>
+            <option value="jpg">Static</option>
+            <option value="gif">Animated</option>
+          </select>
+        </div>
 
-          <div
-            class="bg-cover bg-center rounded-lg bg-[url(https://cdn2.thecatapi.com/images/PnMkwd63w.jpg)] h-64 sm:h-80"
-          ></div> -->
+        <div class="border py-4 px-8">
+          <label
+            for="categories"
+            class="text-gray-600 text-sm font-medium uppercase"
+            >Choose a category:</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="categories" onChange="update()">
+            <option value="">None</option>
+            {{range .Categories}}
+            <option value="{{.Id}}">{{.Name}}</option>
+            {{end}}
+          </select>
+        </div>
+
+        <div class="border py-4 px-8">
+          <label
+            for="breed_id"
+            class="text-gray-600 text-sm font-medium uppercase"
+            >Choose a breed:</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="breed_id" onChange="update()">
+            <option value="">None</option>
+            {{range .Breeds}}
+            <option value="{{.Id}}">{{.Name}}</option>
+            {{end}}
+          </select>
+        </div>
+
+        <div class="border py-4 px-8">
+          <label for="limit" class="text-gray-600 text-sm font-medium uppercase"
+            >Per Page</label
+          >
+          <br />
+          <select class="text-3xl bg-white" id="limit" onChange="update()">
+            <option value="9">9</option>
+            <option value="18">18</option>
+            <option value="80">80</option>
+          </select>
         </div>
       </div>
     </main>

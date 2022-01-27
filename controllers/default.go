@@ -123,36 +123,22 @@ func (this *MainController) SortData() {
 	this.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 	order := this.GetString("order")
 
-	if order != "RANDOM" {
-		if order == "DESC" {
-			sort.Slice(cats, func(i, j int) bool {
-				return cats[i].Id > cats[j].Id
-			})
-
-			s = ""
-			for _, cat := range cats {
-				s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
-			}
-
-			this.Data["json"] = map[string]interface{}{"name": s}
-			this.ServeJSON()
-		}
-		if order == "ASC" {
-			fmt.Println(cats)
-
-			sort.Slice(cats, func(i, j int) bool {
-				return cats[i].Id < cats[j].Id
-			})
-			fmt.Println(cats)
-
-			s = ""
-			for _, cat := range cats {
-				s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
-			}
-			this.Data["json"] = map[string]interface{}{"name": s}
-			this.ServeJSON()
-		}
+	if order == "DESC" {
+		sort.Slice(cats, func(i, j int) bool {
+			return cats[i].Id > cats[j].Id
+		})
 	}
+	if order == "ASC" {
+		sort.Slice(cats, func(i, j int) bool {
+			return cats[i].Id < cats[j].Id
+		})
+	}
+	s = ""
+	for _, cat := range cats {
+		s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
+	}
+	this.Data["json"] = map[string]interface{}{"name": s}
+	this.ServeJSON()
 }
 
 func (this *MainController) NextPage() {
