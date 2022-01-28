@@ -141,7 +141,13 @@
           class="w-[1024px] px-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 place-items-stretch"
         >
           {{range .Cats}}
-          <img class="lazy bg-cover bg-center rounded-lg h-64 sm:h-80" src="{{ .Url }}" data-src="{{ .Url }}"/>
+          <img
+            loading="lazy"
+            alt="..."
+            class="lazy bg-cover bg-center rounded-lg h-64 sm:h-80"
+            src="{{ .Url }}"
+            data-src="{{ .Url }}"
+          />
           {{end}}
         </div>
       </div>
