@@ -106,7 +106,7 @@ func (this *MainController) AjaxTest() {
 
 	if len(cats) > 0 {
 		for _, cat := range cats {
-			s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
+			s += fmt.Sprintf(`<img class="lazy bg-cover bg-center rounded-lg h-64 sm:h-80" src="%s" data-src="%s"/>`, cat.Url, cat.Url)
 		}
 	} else {
 		s += `<div></div><div class="text-center text-black font-semibold text-2xl">No Image(s) Found</div><div></div>`
@@ -135,7 +135,7 @@ func (this *MainController) SortData() {
 	}
 	s = ""
 	for _, cat := range cats {
-		s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
+		s += fmt.Sprintf(`<img class="lazy bg-cover bg-center rounded-lg h-64 sm:h-80" src="%s" data-src="%s"/>`, cat.Url, cat.Url)
 	}
 	this.Data["json"] = map[string]interface{}{"name": s}
 	this.ServeJSON()
@@ -178,7 +178,7 @@ func (this *MainController) NextPage() {
 
 	if len(cats) > 0 {
 		for _, cat := range cats {
-			s += fmt.Sprintf(`<div class="bg-cover bg-center rounded-lg bg-[url(%s)] h-64 sm:h-80"></div>`, cat.Url)
+			s += fmt.Sprintf(`<img class="lazy bg-cover bg-center rounded-lg h-64 sm:h-80" src="%s" data-src="%s"/>`, cat.Url, cat.Url)
 		}
 	} else {
 		s += `<div></div><div class="text-center text-black font-semibold text-2xl">No Image(s) Found</div><div></div>`
