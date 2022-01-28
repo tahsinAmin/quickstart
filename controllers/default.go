@@ -3,7 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"sort"
+	"sync"
+	"time"
 
 	"github.com/beego/beego/v2/client/httplib"
 	beego "github.com/beego/beego/v2/server/web"
@@ -37,39 +40,57 @@ const baseUrl = "https://api.thecatapi.com/v1/images/search?"
 var s string
 
 func (this *MainController) Show() {
-	req := httplib.Get("https://api.thecatapi.com/v1/categories")
-	str, err := req.String()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	defer timeTrack(time.Now(), "\nChecking Time:")
+	fmt.Println("Starting concurrent calls...")
 
-	var categories []Categories
-	json.Unmarshal([]byte(str), &categories)
+	var waitgroup sync.WaitGroup
+	waitgroup.Add(3)
 
-	req = httplib.Get("https://api.thecatapi.com/v1/breeds")
-	str, err = req.String()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	go func() {
+		req := httplib.Get("https://api.thecatapi.com/v1/categories")
+		str, err := req.String()
+		if err != nil {
+			fmt.Println(err.Error())
+		}
 
-	var breeds []Breeds
-	json.Unmarshal([]byte(str), &breeds)
+		var categories []Categories
+		json.Unmarshal([]byte(str), &categories)
+		this.Data["Categories"] = categories
+		waitgroup.Done()
+	}()
 
-	req = httplib.Get(baseUrl + "limit=9&page=1")
-	str, err = req.String()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
+	go func() {
+		req := httplib.Get("https://api.thecatapi.com/v1/breeds")
+		str, err := req.String()
+		if err != nil {
+			fmt.Println(err.Error())
+		}
 
-	json.Unmarshal([]byte(str), &cats)
+		var breeds []Breeds
+		json.Unmarshal([]byte(str), &breeds)
+		this.Data["Breeds"] = breeds
+		waitgroup.Done()
+	}()
 
-	this.Data["Categories"] = categories
-	this.Data["Breeds"] = breeds
-	this.Data["Cats"] = cats
+	go func() {
+		req := httplib.Get(baseUrl + "limit=9&page=1")
+
+		str, err := req.String()
+		if err != nil {
+			fmt.Println(err.Error())
+		}
+		json.Unmarshal([]byte(str), &cats)
+		this.Data["Cats"] = cats
+		waitgroup.Done()
+	}()
+
+	waitgroup.Wait()
+
 	this.TplName = "index.html"
 }
 
 func (this *MainController) AjaxTest() {
+	defer timeTrack(time.Now(), "\nChecking Time:")
 	this.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Origin", "*")
 	this.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 
@@ -119,9 +140,11 @@ func (this *MainController) AjaxTest() {
 }
 
 func (this *MainController) SortData() {
+	defer timeTrack(time.Now(), "\nChecking Time:")
 	this.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Origin", "*")
 	this.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 	order := this.GetString("order")
+	fmt.Println(order)
 
 	if order == "DESC" {
 		sort.Slice(cats, func(i, j int) bool {
@@ -142,6 +165,7 @@ func (this *MainController) SortData() {
 }
 
 func (this *MainController) NextPage() {
+	defer timeTrack(time.Now(), "\nChecking Time:")
 	this.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Origin", "*")
 	this.Ctx.ResponseWriter.Header().Add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 
@@ -188,4 +212,9 @@ func (this *MainController) NextPage() {
 	this.ServeJSON()
 	// // req.Header.Add("Content-Type", "application/json")
 	// // req.Header.Add("x-api-key", "176a2a9c-6fc8-4d74-af01-4b07c0034e5e")
+}
+
+func timeTrack(start time.Time, name string) {
+	elapsed := time.Since(start)
+	log.Printf("%s took %s", name, elapsed)
 }

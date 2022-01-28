@@ -12,7 +12,8 @@
 - [x] No image found
 - [x] Have the refresh button move along the scrollbar
 - [x] Make it rersponsive
-- [ ] Frontend
+- [x] Lazy Loading
+- [x] Frontend
 - [ ] How to add api key in beego
 
 # Refactor
@@ -109,6 +110,8 @@ bee run
 - If any fields value is not showing from the fetched json response. Check if the field typy matches with the json property's value's type.
 
 - How to pass golang values inside a property in tag -> `<div class="... bg-[url({{ .Url }})]"></div>`
+
+- [Embedding in Go](https://www.youtube.com/watch?v=xba1mcOsWEI)
 
 <!-- https://docs.thecatapi.com/ -->
 <!-- https://docs.thecatapi.com/authentication -->
